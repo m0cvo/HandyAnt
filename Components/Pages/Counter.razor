@@ -1,0 +1,28 @@
+﻿@page "/counter"
+
+<div class="cardBod">
+<h1>Dipole Calculator</h1>
+<label>Please enter a frequency in Mhz: </label>
+<input @bind="freq" />
+    <button class="btn btn-primary" @onclick="DipCalc">Enter</button>
+<p role="status">Wavelength in free space: @wavelength</p>
+<p role="status">Wavelength with velocity factor: @vwavelength</p>
+<p role="status">1/2 wave dipole length: @dip</p>
+
+
+<hr />
+</div>
+
+@code {
+    private double freq = 0;
+    double wavelength;
+    double vwavelength;
+    double dip;
+
+    private void DipCalc()
+    {
+        wavelength = 300 / freq;
+        vwavelength = wavelength * 0.96;
+        dip = vwavelength / 2;
+    }
+}
